@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -65,7 +67,6 @@
 </head>
 <body>
     <?php
-        session_start();
         if (!empty($_POST) || !empty($_SESSION["clicked"])) {
             $f = fopen("./palavra.json", "r");
             $json = json_decode(fread($f, filesize("./palavra.json")));
