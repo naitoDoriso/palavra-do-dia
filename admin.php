@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,11 +8,12 @@
 </head>
 <body>
     <?php
+        session_start();
         $senha = "3141592653589CastorChines3141592653589";
         if (!empty($_SESSION["adm"])) {
             if (!empty($_POST["palavra"])) {
-                $f = fopen("./palavra.json", "w");
-                fwrite($f, json_encode(["word"=>$_POST["palavra"]], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+                $db = new PDO("mysql:dbname=railway;host=localhost;port=3306", "root", "166G55Cc6EHBG23aeHeBfCD224a5aBFa");
+                $db->query("UPDATE Word SET word= \"$_POST[palavra]\" WHERE id=1")->fetch();
                 echo "<script>(()=>{location.replace('./index.php');})();</script>";
             }
 

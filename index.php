@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,15 +65,15 @@
 </head>
 <body>
     <?php
+        session_start();
         if (!empty($_POST) || !empty($_SESSION["clicked"])) {
-            $f = fopen("./palavra.json", "r");
-            $json = json_decode(fread($f, filesize("./palavra.json")));
+            $db = new PDO("mysql:dbname=railway;host=localhost;port=3306", "root", "166G55Cc6EHBG23aeHeBfCD224a5aBFa");
             if (empty($_SESSION["clicked"])) echo "<script>(()=>{location.reload();})();</script>";
             $_SESSION["clicked"] = "1";
         ?>
 
         <center><h2 style="color: white;">Volte amanhã às 18:40 para uma nova palavra.</h2></center>
-        <h1 id="palavra"><?= $json->word ?></h1>
+        <h1 id="palavra"><?= $db->query("SELECT * FROM Word")->fetch()["word"] ?></h1>
 
         <?php }
 
