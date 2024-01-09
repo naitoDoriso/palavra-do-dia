@@ -65,6 +65,7 @@
 </head>
 <body>
     <?php
+        ob_start();
         session_start();
         if (!empty($_POST) || !empty($_SESSION["clicked"])) {
             $f = fopen("./palavra.json", "r");
@@ -84,6 +85,7 @@
         <button id="request" name="request">palavra</button>
     </form>
 
-    <?php } ?>
+    <?php }
+    ob_end_flush();?>
 </body>
 </html>
