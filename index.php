@@ -65,12 +65,11 @@
 </head>
 <body>
     <?php
-        ob_start();
         session_start();
         if (!empty($_POST) || !empty($_SESSION["clicked"])) {
             $f = fopen("./palavra.json", "r");
             $json = json_decode(fread($f, filesize("./palavra.json")));
-            if (empty($_SESSION["clicked"])) header("Refresh:0");
+            if (empty($_SESSION["clicked"])) echo "<script>(()=>{location.reload();})();</script>";
             $_SESSION["clicked"] = "1";
         ?>
 
@@ -85,7 +84,6 @@
         <button id="request" name="request">palavra</button>
     </form>
 
-    <?php }
-    ob_end_flush();?>
+    <?php } ?>
 </body>
 </html>

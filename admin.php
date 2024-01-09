@@ -11,10 +11,10 @@
         session_start();
         $senha = "3141592653589CastorChines3141592653589";
         if (!empty($_SESSION["adm"])) {
-            if (!empty($_POST)) {
+            if (!empty($_POST["palavra"])) {
                 $f = fopen("./palavra.json", "w");
                 fwrite($f, json_encode(["word"=>$_POST["palavra"]], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
-                header("Location: ./index.php");
+                echo "<script>(()=>{location.replace('./index.php');})();</script>";
             }
 
             if ($_SESSION["adm"] == $senha) {?>
@@ -35,7 +35,7 @@
         if (!empty($_POST)) {
             if ($_POST["pass"] == $senha) {
                 $_SESSION["adm"] = $senha;
-                header("Refresh:0");
+                echo "<script>(()=>{location.reload();})();</script>";
             } else {
                 echo "<span style='color:red'>senha errada paizão!</span>";
             }
