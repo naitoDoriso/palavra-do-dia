@@ -68,7 +68,7 @@
 <body>
     <?php
         if (!empty($_POST) || !empty($_SESSION["clicked"])) {
-            $db = new PDO("mysql:dbname=railway;host=roundhouse.proxy.rlwy.net:33734/railway;port=3306", "root", "166G55Cc6EHBG23aeHeBfCD224a5aBFa");
+            $db = new PDO("mysql:dbname=railway;host=roundhouse.proxy.rlwy.net;port=33734", "root", "166G55Cc6EHBG23aeHeBfCD224a5aBFa");
             if (empty($_SESSION["clicked"])) echo "<script>(()=>{location.reload();})();</script>";
             $_SESSION["clicked"] = "1";
         ?>
