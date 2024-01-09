@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +10,6 @@
 </head>
 <body>
     <?php
-        session_start();
         $senha = "3141592653589CastorChines3141592653589";
         if (!empty($_SESSION["adm"])) {
             if (!empty($_POST["palavra"])) {
